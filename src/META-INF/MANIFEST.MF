@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+DownloaderProcessClass: it.acsys.aria2wrapper.IDownloadProcessImpl
+DownloaderClass: it.acsys.aria2wrapper.URIDownloader
+Class-Path: DMPluginjar.jar
