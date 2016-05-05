@@ -1,43 +1,29 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>it.acsys.aria2wrapper</groupId>
-	<artifactId>DMAria2Pluginjar</artifactId>
-	<version>0.0.39-SNAPSHOT</version>
-	<name>Aria2Wrapper</name>
-	<description>Java wrapper for the aria2 multi-protocol and multi-source command-line download utility</description>
-	<url>https://github.com/AdvancedComputerSystems/Aria2Wrapper</url>
-	<properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>it.acsys.aria2wrapper</groupId>
+  <artifactId>DMAria2Pluginjar</artifactId>
+  <version>0.0.38</version>
+  <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<scm>
-		<url>https://github.com/AdvancedComputerSystems/Aria2Wrapper</url>
-		<connection>scm:git:git://github.com/AdvancedComputerSystems/Aria2Wrapper.git</connection>
-		<developerConnection>scm:git:git@github.com:AdvancedComputerSystems/Aria2Wrapper.git</developerConnection>
-		<tag>DMAria2Pluginjar-0_0_25</tag>
-	</scm>
-	<distributionManagement>
+		<connection>scm:cvs:pserver:cvsanon:@cvsserver.acs:/mnt/cvs/cvsroot/space:Aria2Wrapper</connection>
+		<developerConnection>scm:cvs:pserver:cvsanon:@cvsserver.acs:/mnt/cvs/cvsroot/space:Aria2Wrapper</developerConnection>
+		<url>http://cvsserver.acs/cgi-bin/cvsweb.cgi/Aria2Wrapper/</url>
+    <tag>DMAria2Pluginjar-0_0_38</tag>
+  </scm>
+  <distributionManagement>
+		<!-- Publish the versioned releases here -->
 		<repository>
 			<id>ngeo-releases</id>
-			<url>http://ngeo-nexus.acsys.it:8082/nexus/content/repositories/releases</url>
+			<url>http://cvsserver:8081/nexus/content/repositories/ngeo-releases</url>
 		</repository>
+		<!-- Publish the versioned releases here -->
 		<snapshotRepository>
 			<id>ngeo-snapshots</id>
-			<url>http://ngeo-nexus.acsys.it:8082/nexus/content/repositories/snapshots</url>
+			<url>http://cvsserver:8081/nexus/content/repositories/ngeo-snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
-	<repositories>
-		<repository>
-			<id>nexus</id>
-			<url>http://ngeo-nexus.acsys.it:8082/nexus/content/groups/public</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 	<build>
 		<plugins>
 			<plugin>
@@ -49,24 +35,39 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>eu.somatik.serviceloader-maven-plugin</groupId>
-				<artifactId>serviceloader-maven-plugin</artifactId>
-				<version>1.0.2</version>
-				<configuration>
-					<services>
-						<param>int_.esa.eo.ngeo.downloadmanager.plugin.IDownloadPlugin</param>
-					</services>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+      <groupId>eu.somatik.serviceloader-maven-plugin</groupId>
+      <artifactId>serviceloader-maven-plugin</artifactId>
+      <version>1.0.2</version>
+      <configuration>
+        <services>
+          <param>int_.esa.eo.ngeo.downloadmanager.plugin.IDownloadPlugin</param>
+        </services>
+      </configuration>
+      <executions>
+        <execution>
+          <goals>
+            <goal>generate</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
 		</plugins>
+	
+    
+  
 	</build>
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<url>http://cvsserver:8081/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>com.sun.xml.security</groupId>
@@ -74,24 +75,25 @@
 			<version>1.0</version>
 		</dependency>
 		<dependency>
-			<groupId>com.siemens.pse.umsso</groupId>
-			<artifactId>umsso_client</artifactId>
-			<version>2.2.3</version>
-		</dependency>
-		<dependency>
+	    	<groupId>com.siemens.pse.umsso</groupId>
+	    	<artifactId>umsso_client</artifactId>
+	    	<version>2.2.3</version>
+    	</dependency>
+    	<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.2.2</version>
-		</dependency>
+	    </dependency>
 		<dependency>
-			<groupId>commons-httpclient</groupId>
-			<artifactId>commons-httpclient</artifactId>
-			<version>3.1</version>
-		</dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+      <version>3.1</version>
+    </dependency>
+
 		<dependency>
-			<groupId>int.esa.eo.ngeo.downloadmanager</groupId>
-			<artifactId>download-manager-plugin-interface</artifactId>
-			<version>1.6.0</version>
+	  		<groupId>int.esa.eo.ngeo.downloadmanager</groupId>
+	  		<artifactId>download-manager-plugin-interface</artifactId>
+	  		<version>1.6.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xmlrpc</groupId>
